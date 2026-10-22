@@ -194,13 +194,13 @@ function updateConnectionStatus(isLive, isError = false) {
   const badge = document.getElementById("connectionBadge");
   if (!badge) return;
   if (isError) {
-    badge.className = "text-[11px] font-semibold text-rose-700 bg-rose-100 px-2 py-0.2 rounded-full border border-rose-300";
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 whitespace-nowrap shrink-0";
     badge.textContent = "เชื่อมต่อไม่ได้";
   } else if (isLive) {
-    badge.className = "text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.2 rounded-full border border-emerald-300";
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap shrink-0";
     badge.textContent = `Google Sheets (${APP_STATE.sheetTabName})`;
   } else {
-    badge.className = "text-[11px] font-semibold text-amber-800 bg-amber-100 px-2 py-0.2 rounded-full border border-amber-300";
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap shrink-0";
     badge.textContent = "Demo Mode";
   }
 }

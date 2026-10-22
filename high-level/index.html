@@ -19,7 +19,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 
   <!-- PWA & Mobile Web App Meta -->
   <meta name="theme-color" content="#9bb38f">
@@ -41,8 +41,8 @@
       
       <!-- Left: Player Profile Chip -->
       <div class="flex items-center gap-2.5">
-        <div class="relative">
-          <div class="w-12 h-12 rounded-full bg-amber-200 border-2 border-[#6f4e30] flex items-center justify-center overflow-hidden shadow-inner">
+        <div class="relative shrink-0">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-amber-200 border-2 border-[#6f4e30] flex items-center justify-center overflow-hidden shadow-inner">
             <span class="text-2xl">🐱</span>
           </div>
           <span class="absolute -bottom-1 -right-1 bg-[#f38f88] text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full border border-[#7c3d38]">Lv.20</span>
@@ -51,10 +51,10 @@
           <h1 id="courseTitleDisplay" class="font-bold text-sm sm:text-base text-[#4d3725] leading-tight">
             การเขียนโปรแกรมภาษาระดับสูง
           </h1>
-          <div class="flex items-center gap-1.5 text-xs text-[#7d654f]">
-            <span>Sec 1</span>
-            <span>•</span>
-            <span id="connectionBadge" class="text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.2 rounded-full border border-emerald-300">Demo Mode</span>
+          <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-[#7d654f] mt-0.5">
+            <span class="whitespace-nowrap">High-Level Programming</span>
+            <span class="opacity-50">•</span>
+            <span id="connectionBadge" class="text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap shrink-0">Demo Mode</span>
           </div>
         </div>
       </div>
@@ -84,23 +84,23 @@
       </div>
 
       <!-- Right: View Switcher & Settings -->
-      <div class="flex items-center gap-2">
-        <button id="btnPwaInstall" class="game-btn btn-pill-gold text-xs px-2.5 py-1.5 hidden" title="ติดตั้งแอปลงมือถือ">
-          <i class="fa-solid fa-mobile-screen-button"></i> <span class="hidden sm:inline">ติดตั้งแอป</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button id="btnPwaInstall" class="game-btn btn-pill-gold nav-header-btn px-2.5 sm:px-3 hidden" title="ติดตั้งแอปลงมือถือ">
+          <i class="fa-solid fa-mobile-screen-button"></i> <span>ติดตั้งแอป</span>
         </button>
-        <a href="../" class="game-btn btn-pill-wood text-xs px-2.5 py-1.5" title="กลับหน้าเลือกวิชา">
+        <a href="../" class="game-btn btn-pill-wood nav-header-btn px-2.5 sm:px-3" title="กลับหน้าเลือกวิชา">
           <i class="fa-solid fa-house"></i> <span>เลือกวิชา</span>
         </a>
-        <button id="btnViewStudent" class="game-btn btn-pill-mint text-xs px-3 py-1.5">
+        <button id="btnViewStudent" class="game-btn btn-pill-mint nav-header-btn px-2.5 sm:px-3">
           <i class="fa-solid fa-trophy"></i> <span>กระดาน</span>
         </button>
-        <button id="btnViewTeacher" class="game-btn btn-pill-coral text-xs px-3 py-1.5">
+        <button id="btnViewTeacher" class="game-btn btn-pill-coral nav-header-btn px-2.5 sm:px-3">
           <i class="fa-solid fa-chalkboard-user"></i> <span>โต๊ะอาจารย์</span>
         </button>
-        <button id="btnToggleSound" class="game-btn btn-pill-wood text-xs w-8 h-8 rounded-full p-0" title="เปิด/ปิดเสียง">
+        <button id="btnToggleSound" class="game-btn btn-pill-wood nav-header-btn-icon rounded-full" title="เปิด/ปิดเสียง">
           <i class="fa-solid fa-volume-high text-xs" id="soundIcon"></i>
         </button>
-        <button id="btnOpenSettings" class="game-btn btn-pill-wood text-xs w-8 h-8 rounded-full p-0 hidden" title="ตั้งค่า / Google Sheets">
+        <button id="btnOpenSettings" class="game-btn btn-pill-wood nav-header-btn-icon rounded-full hidden" title="ตั้งค่า / Google Sheets">
           <i class="fa-solid fa-gear text-xs"></i>
         </button>
       </div>
@@ -141,97 +141,95 @@
         </div>
       </div>
 
-      <!-- UPPER STAGE: HALL OF FAME + MASCOT BOOTH -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-6">
+      <!-- UPPER STAGE: HALL OF FAME 4 AWARDS (2x2 Grid on Mobile, 4 Cards on Desktop) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 mb-5 sm:mb-6">
         
-        <!-- Left 7 cols: 4 Hall of Fame Award Pedestals -->
-        <div class="lg:col-span-7 grid grid-cols-2 gap-3">
+        <!-- Award 1: Overall Leader -->
+        <div class="parchment-inner p-3 sm:p-3.5 flex flex-col items-center text-center bg-[#fdf5e2] border-amber-300 shadow-sm relative overflow-hidden group">
+          <span class="absolute -top-1 -right-1 text-2xl opacity-20 pointer-events-none">👑</span>
           
-          <!-- Award 1: Overall Leader -->
-          <div class="parchment-inner p-3 flex items-center gap-3 bg-[#fdf5e2] border-amber-300 shadow-sm relative overflow-hidden">
-            <span class="absolute -top-1 -right-1 text-2xl opacity-20">👑</span>
-            <div class="relative shrink-0">
-              <img id="hofOverallImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=king" class="w-12 h-12 rounded-full border-2 border-amber-500 bg-amber-100 object-cover shadow">
-              <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 text-[10px] font-black px-1.5 rounded-full border border-amber-600">#1</span>
-            </div>
-            <div class="min-w-0">
-              <span class="text-[11px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full inline-block">👑 แชมป์รวม</span>
-              <h3 id="hofOverallName" class="font-bold text-sm text-[#4d3725] truncate">-</h3>
-              <p class="text-xs font-bold text-amber-600 font-game"><span id="hofOverallScore">0</span> / 20 แต้ม ⭐</p>
-            </div>
+          <span class="text-[10px] sm:text-[11px] font-bold text-amber-800 bg-amber-100/90 border border-amber-300/80 px-2.5 py-0.5 rounded-full whitespace-nowrap mb-2 shadow-xs">
+            👑 แชมป์รวม
+          </span>
+
+          <div class="relative my-1">
+            <img id="hofOverallImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=king" class="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-amber-500 bg-amber-100 object-cover shadow">
+            <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 text-[10px] font-black px-1.5 py-0.2 rounded-full border border-amber-600 shadow-xs">#1</span>
           </div>
 
-          <!-- Award 2: King of Questions -->
-          <div class="parchment-inner p-3 flex items-center gap-3 bg-[#f1f8fd] border-sky-300 shadow-sm relative overflow-hidden">
-            <span class="absolute -top-1 -right-1 text-2xl opacity-20">💡</span>
-            <div class="relative shrink-0">
-              <img id="hofAskImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=asker" class="w-12 h-12 rounded-full border-2 border-sky-400 bg-sky-100 object-cover shadow">
-              <span class="absolute -bottom-1 -right-1 bg-sky-400 text-sky-950 text-[10px] font-black px-1 rounded-full border border-sky-600">Q</span>
-            </div>
-            <div class="min-w-0">
-              <span class="text-[11px] font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full inline-block">💡 ยอดนักถาม</span>
-              <h3 id="hofAskName" class="font-bold text-sm text-[#4d3725] truncate">-</h3>
-              <p class="text-xs font-bold text-sky-600 font-game">ถาม <span id="hofAskScore">0</span> ครั้ง</p>
-            </div>
-          </div>
+          <h3 id="hofOverallName" class="font-bold text-xs sm:text-sm text-[#4d3725] w-full truncate mt-1">
+            -
+          </h3>
 
-          <!-- Award 3: Sharp Answerer -->
-          <div class="parchment-inner p-3 flex items-center gap-3 bg-[#f2faf5] border-emerald-300 shadow-sm relative overflow-hidden">
-            <span class="absolute -top-1 -right-1 text-2xl opacity-20">🎯</span>
-            <div class="relative shrink-0">
-              <img id="hofAnswerImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=answerer" class="w-12 h-12 rounded-full border-2 border-emerald-400 bg-emerald-100 object-cover shadow">
-              <span class="absolute -bottom-1 -right-1 bg-emerald-400 text-emerald-950 text-[10px] font-black px-1 rounded-full border border-emerald-600">A</span>
-            </div>
-            <div class="min-w-0">
-              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full inline-block">🎯 มือปืนสายตอบ</span>
-              <h3 id="hofAnswerName" class="font-bold text-sm text-[#4d3725] truncate">-</h3>
-              <p class="text-xs font-bold text-emerald-600 font-game">ตอบ <span id="hofAnswerScore">0</span> ครั้ง</p>
-            </div>
-          </div>
-
-          <!-- Award 4: Ultimate Supporter -->
-          <div class="parchment-inner p-3 flex items-center gap-3 bg-[#fcf2f2] border-rose-300 shadow-sm relative overflow-hidden">
-            <span class="absolute -top-1 -right-1 text-2xl opacity-20">🤝</span>
-            <div class="relative shrink-0">
-              <img id="hofHelpImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=helper" class="w-12 h-12 rounded-full border-2 border-rose-400 bg-rose-100 object-cover shadow">
-              <span class="absolute -bottom-1 -right-1 bg-rose-400 text-rose-950 text-[10px] font-black px-1 rounded-full border border-rose-600">H</span>
-            </div>
-            <div class="min-w-0">
-              <span class="text-[11px] font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full inline-block">🤝 ยอดสายช่วยงาน</span>
-              <h3 id="hofHelpName" class="font-bold text-sm text-[#4d3725] truncate">-</h3>
-              <p class="text-xs font-bold text-rose-600 font-game">ช่วย <span id="hofHelpScore">0</span> ครั้ง</p>
-            </div>
-          </div>
-
+          <p class="text-[11px] sm:text-xs font-bold text-amber-600 font-game whitespace-nowrap mt-0.5">
+            <span id="hofOverallScore">0</span> / 20 แต้ม ⭐
+          </p>
         </div>
 
-        <!-- Right 5 cols: Cute Mascot Character Booth (Matching Pinterest!) -->
-        <div class="lg:col-span-5 parchment-inner p-4 flex flex-col justify-between bg-[#fbf5e6] relative">
+        <!-- Award 2: King of Questions -->
+        <div class="parchment-inner p-3 sm:p-3.5 flex flex-col items-center text-center bg-[#f1f8fd] border-sky-300 shadow-sm relative overflow-hidden group">
+          <span class="absolute -top-1 -right-1 text-2xl opacity-20 pointer-events-none">💡</span>
           
-          <div class="speech-bubble mb-3">
-            <p id="mascotMessage">"ยินดีต้อนรับสู่คลาสเรียน! ใครจะเก็บครบ 20 แต้มเป็นคนแรกนะ? ยกมือถาม-ตอบได้เลยนะ เมี้ยว~ 🐾"</p>
+          <span class="text-[10px] sm:text-[11px] font-bold text-sky-800 bg-sky-100/90 border border-sky-300/80 px-2.5 py-0.5 rounded-full whitespace-nowrap mb-2 shadow-xs">
+            💡 ยอดนักถาม
+          </span>
+
+          <div class="relative my-1">
+            <img id="hofAskImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=asker" class="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-sky-400 bg-sky-100 object-cover shadow">
+            <span class="absolute -bottom-1 -right-1 bg-sky-400 text-sky-950 text-[10px] font-black px-1.5 py-0.2 rounded-full border border-sky-600 shadow-xs">Q</span>
           </div>
 
-          <div class="flex items-center justify-between gap-3 mt-2">
-            <!-- Mascot Avatar -->
-            <div class="flex items-center gap-2 mascot-bob">
-              <div class="w-16 h-16 rounded-full bg-amber-100 border-3 border-[#8b6543] flex items-center justify-center text-3xl shadow-md">
-                🐶
-              </div>
-              <div>
-                <span class="font-bold text-sm text-[#4e3a27] block">ผู้ช่วยประจำห้อง</span>
-                <span class="text-xs text-[#8f755e]">Cheerleader Bot</span>
-              </div>
-            </div>
+          <h3 id="hofAskName" class="font-bold text-xs sm:text-sm text-[#4d3725] w-full truncate mt-1">
+            -
+          </h3>
 
-            <!-- Wood Stump Buttons -->
-            <div class="flex flex-col gap-1.5">
-              <button onclick="triggerCheerMessage()" class="game-btn btn-pill-wood text-xs px-3 py-1.5">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> <span>ทักทาย</span>
-              </button>
-            </div>
+          <p class="text-[11px] sm:text-xs font-bold text-sky-600 font-game whitespace-nowrap mt-0.5">
+            ถาม <span id="hofAskScore">0</span> ครั้ง
+          </p>
+        </div>
+
+        <!-- Award 3: Sharp Answerer -->
+        <div class="parchment-inner p-3 sm:p-3.5 flex flex-col items-center text-center bg-[#f2faf5] border-emerald-300 shadow-sm relative overflow-hidden group">
+          <span class="absolute -top-1 -right-1 text-2xl opacity-20 pointer-events-none">🎯</span>
+          
+          <span class="text-[10px] sm:text-[11px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/80 px-2.5 py-0.5 rounded-full whitespace-nowrap mb-2 shadow-xs">
+            🎯 มือปืนสายตอบ
+          </span>
+
+          <div class="relative my-1">
+            <img id="hofAnswerImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=answerer" class="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-emerald-400 bg-emerald-100 object-cover shadow">
+            <span class="absolute -bottom-1 -right-1 bg-emerald-400 text-emerald-950 text-[10px] font-black px-1.5 py-0.2 rounded-full border border-emerald-600 shadow-xs">A</span>
           </div>
 
+          <h3 id="hofAnswerName" class="font-bold text-xs sm:text-sm text-[#4d3725] w-full truncate mt-1">
+            -
+          </h3>
+
+          <p class="text-[11px] sm:text-xs font-bold text-emerald-600 font-game whitespace-nowrap mt-0.5">
+            ตอบ <span id="hofAnswerScore">0</span> ครั้ง
+          </p>
+        </div>
+
+        <!-- Award 4: Ultimate Supporter -->
+        <div class="parchment-inner p-3 sm:p-3.5 flex flex-col items-center text-center bg-[#fcf2f2] border-rose-300 shadow-sm relative overflow-hidden group">
+          <span class="absolute -top-1 -right-1 text-2xl opacity-20 pointer-events-none">🤝</span>
+          
+          <span class="text-[10px] sm:text-[11px] font-bold text-rose-800 bg-rose-100/90 border border-rose-300/80 px-2.5 py-0.5 rounded-full whitespace-nowrap mb-2 shadow-xs">
+            🤝 ยอดสายช่วยงาน
+          </span>
+
+          <div class="relative my-1">
+            <img id="hofHelpImg" referrerpolicy="no-referrer" src="https://api.dicebear.com/7.x/bottts/svg?seed=helper" class="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-rose-400 bg-rose-100 object-cover shadow">
+            <span class="absolute -bottom-1 -right-1 bg-rose-400 text-rose-950 text-[10px] font-black px-1.5 py-0.2 rounded-full border border-rose-600 shadow-xs">H</span>
+          </div>
+
+          <h3 id="hofHelpName" class="font-bold text-xs sm:text-sm text-[#4d3725] w-full truncate mt-1">
+            -
+          </h3>
+
+          <p class="text-[11px] sm:text-xs font-bold text-rose-600 font-game whitespace-nowrap mt-0.5">
+            ช่วย <span id="hofHelpScore">0</span> ครั้ง
+          </p>
         </div>
 
       </div>
@@ -429,7 +427,7 @@
   <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
   <!-- JavaScript -->
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
   <script src="pwa.js"></script>
 </body>
 </html>

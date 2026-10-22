@@ -389,3 +389,46 @@ img[alt="Avatar"], #hofOverallImg, #hofAskImg, #hofAnswerImg, #hofHelpImg {
   object-fit: cover !important;
 }
 
+/* =========================================================
+   UNIFORM NAVIGATION BUTTONS (PERFECT HEIGHT & NO WRAP)
+   ========================================================= */
+.nav-header-btn {
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .nav-header-btn {
+    height: 36px !important;
+    font-size: 12px !important;
+  }
+}
+
+.nav-header-btn-icon {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media (min-width: 640px) {
+  .nav-header-btn-icon {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+  }
+}
+
+
