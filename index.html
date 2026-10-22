@@ -17,6 +17,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="theme-color" content="#9bb38f">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ClassQuest">
 </head>
 <body class="min-h-screen py-6 px-3 sm:px-6 flex flex-col items-center justify-center">
 
@@ -50,6 +60,11 @@
         <p class="text-xs sm:text-sm text-[#7d654f] mt-2 font-bold">
           ระบบบันทึกคะแนนการมีส่วนร่วมและจัดอันดับแบบ Gamification
         </p>
+        <div class="mt-3 flex justify-center">
+          <button id="btnPwaInstall" class="game-btn btn-pill-gold text-xs px-3.5 py-1.5 hidden shadow-md">
+            <i class="fa-solid fa-mobile-screen-button"></i> <span>ติดตั้งแอปลงมือถือ</span>
+          </button>
+        </div>
       </div>
 
       <!-- Mascot Welcome Banner -->
@@ -170,5 +185,7 @@
 
   </div>
 
+  <!-- PWA Helper -->
+  <script src="pwa.js"></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+{
+  "name": "Classroom Quest - ระบบคะแนนการมีส่วนร่วม",
+  "short_name": "ClassQuest",
+  "description": "ระบบบันทึกคะแนนการมีส่วนร่วมและจัดอันดับในชั้นเรียน (Gamified Classroom Participation)",
+  "id": "classroom-quest-portal",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#9bb38f",
+  "background_color": "#9bb38f",
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "การเขียนโปรแกรมภาษาระดับสูง",
+      "short_name": "High-Level",
+      "description": "กระดานคะแนนวิชาการเขียนโปรแกรมภาษาระดับสูง",
+      "url": "./high-level/",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "การออกแบบและเขียนโปรแกรมบนเว็บ",
+      "short_name": "Web-Prog",
+      "description": "กระดานคะแนนวิชาการออกแบบและเขียนโปรแกรมบนเว็บ",
+      "url": "./web-programming/",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Background Sage Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#abc29f"/>
+      <stop offset="100%" stop-color="#829c76"/>
+    </linearGradient>
+
+    <!-- Wood Trim Gradient -->
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a67e56"/>
+      <stop offset="100%" stop-color="#694b2f"/>
+    </linearGradient>
+
+    <!-- Trophy Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffea78"/>
+      <stop offset="40%" stop-color="#fbc02d"/>
+      <stop offset="100%" stop-color="#d98200"/>
+    </linearGradient>
+
+    <!-- Trophy Highlight -->
+    <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3d2c1d" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- App Background Squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Inner Stitch Border -->
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#f6ecdb" stroke-width="4" stroke-dasharray="14 10" stroke-opacity="0.6"/>
+
+  <!-- Main Trophy & Character Group -->
+  <g filter="url(#dropShadow)">
+    
+    <!-- Wooden Plinth Base -->
+    <!-- Base Bottom Tier -->
+    <rect x="176" y="380" width="160" height="34" rx="10" fill="url(#woodGrad)" stroke="#452d19" stroke-width="4"/>
+    <!-- Base Top Tier -->
+    <rect x="206" y="356" width="100" height="28" rx="8" fill="#c09668" stroke="#452d19" stroke-width="4"/>
+
+    <!-- Trophy Stem / Neck -->
+    <path d="M 236 295 L 236 358 L 276 358 L 276 295 Z" fill="#d98200" stroke="#784400" stroke-width="4"/>
+    <ellipse cx="256" cy="305" rx="28" ry="10" fill="#fbc02d" stroke="#784400" stroke-width="3"/>
+
+    <!-- Trophy Handles (Ears) -->
+    <!-- Left Handle -->
+    <path d="M 180 170 C 100 170, 100 270, 195 270" fill="none" stroke="#d98200" stroke-width="20" stroke-linecap="round"/>
+    <path d="M 180 170 C 100 170, 100 270, 195 270" fill="none" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Right Handle -->
+    <path d="M 332 170 C 412 170, 412 270, 317 270" fill="none" stroke="#d98200" stroke-width="20" stroke-linecap="round"/>
+    <path d="M 332 170 C 412 170, 412 270, 317 270" fill="none" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- Trophy Main Cup Body -->
+    <path d="M 166 140 
+             C 166 280, 210 300, 256 300 
+             C 302 300, 346 280, 346 140 
+             Z" 
+          fill="url(#goldGrad)" stroke="#784400" stroke-width="6"/>
+
+    <!-- Cup Rim Oval -->
+    <ellipse cx="256" cy="140" rx="90" ry="24" fill="#ffea78" stroke="#784400" stroke-width="6"/>
+    <ellipse cx="256" cy="140" rx="74" ry="16" fill="#e89d00"/>
+
+    <!-- Cup Highlight Curve -->
+    <path d="M 182 155 C 182 245, 206 270, 230 278 C 215 260, 200 220, 200 155 Z" fill="url(#highlightGrad)"/>
+
+    <!-- Cute Paw Print on Cup (Emblem) -->
+    <!-- Main Paw Pad -->
+    <ellipse cx="256" cy="225" rx="24" ry="18" fill="#6d4c2b"/>
+    <!-- 4 Toe Beans -->
+    <circle cx="230" cy="195" r="7.5" fill="#6d4c2b"/>
+    <circle cx="247" cy="186" r="8" fill="#6d4c2b"/>
+    <circle cx="265" cy="186" r="8" fill="#6d4c2b"/>
+    <circle cx="282" cy="195" r="7.5" fill="#6d4c2b"/>
+
+    <!-- 20 Points Badge Tag on Plinth -->
+    <rect x="220" y="386" width="72" height="22" rx="6" fill="#fcf8ed" stroke="#6d4c2b" stroke-width="2"/>
+    <text x="256" y="402" font-family="'Fredoka', sans-serif" font-weight="900" font-size="14" fill="#b45309" text-anchor="middle">20 PTS</text>
+  </g>
+
+  <!-- Decorative Sparkles and Stars -->
+  <!-- Top Left Star -->
+  <g transform="translate(100, 105)">
+    <path d="M 0 -18 L 4 -4 L 18 0 L 4 4 L 0 18 L -4 4 L -18 0 L -4 -4 Z" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))"/>
+  </g>
+  
+  <!-- Top Right Star -->
+  <g transform="translate(412, 115)">
+    <path d="M 0 -24 L 5 -5 L 24 0 L 5 5 L 0 24 L -5 5 L -24 0 L -5 -5 Z" fill="#fde047" stroke="#ca8a04" stroke-width="2" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))"/>
+    <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Mini Sparkle Right -->
+  <g transform="translate(380, 220)">
+    <circle cx="0" cy="0" r="5" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <!-- Mini Sparkle Left -->
+  <g transform="translate(130, 260)">
+    <circle cx="0" cy="0" r="4" fill="#ffffff" opacity="0.8"/>
+  </g>
+</svg>
