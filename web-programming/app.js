@@ -112,7 +112,17 @@ const sfx = new SoundFX();
 
 function getAvatarUrl(student) {
   if (student.photo_url && student.photo_url.trim().startsWith("http")) {
-    return student.photo_url.trim();
+    const raw = student.photo_url.trim();
+    // แปลงลิงก์ Google Drive ให้อ่านเป็นรูปภาพตรงๆ ได้อัตโนมัติ
+    const match1 = raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (match1 && match1[1]) {
+      return `https://drive.google.com/thumbnail?id=${match1[1]}&sz=w300`;
+    }
+    const match2 = raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (match2 && match2[1]) {
+      return `https://drive.google.com/thumbnail?id=${match2[1]}&sz=w300`;
+    }
+    return raw;
   }
   const seed = encodeURIComponent(student.nickname || student.student_id);
   return `https://api.dicebear.com/7.x/adventurer/svg?seed=${seed}&backgroundColor=fdf6e2`;
