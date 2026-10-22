@@ -382,3 +382,10 @@ body {
   font-weight: 700;
   font-size: 0.85rem;
 }
+
+/* Strict Avatar Constraints to prevent image overflow */
+img[alt="Avatar"], #hofOverallImg, #hofAskImg, #hofAnswerImg, #hofHelpImg {
+  aspect-ratio: 1 / 1;
+  object-fit: cover !important;
+}
+

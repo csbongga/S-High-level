@@ -313,8 +313,8 @@ function renderStudentView() {
       <div class="bg-[#fcf8f0] border-2 border-[#ebd8c1] rounded-2xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:border-[#bfa283] transition-all shadow-xs">
         <div class="flex items-center gap-3 min-w-0">
           ${stampHtml}
-          <div class="relative shrink-0">
-            <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="w-11 h-11 rounded-full bg-[#faedd9] border-2 border-[#8b6543] object-cover shadow-xs">
+          <div class="relative shrink-0" style="width: 44px; height: 44px;">
+            <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="rounded-full bg-[#faedd9] border-2 border-[#8b6543] shadow-xs" style="width: 44px; height: 44px; min-width: 44px; min-height: 44px; object-fit: cover;">
             <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
           </div>
           <div class="min-w-0">
@@ -397,8 +397,8 @@ function renderTeacherView() {
   container.innerHTML = students.map(s => `
     <div class="bg-[#fcf8f0] border-3 border-[#c2a689] rounded-2xl p-3.5 shadow-sm flex flex-col justify-between gap-3 hover:border-[#8b6543] transition-all">
       <div class="flex items-center gap-3">
-        <div class="relative shrink-0">
-          <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="w-13 h-13 rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] object-cover shadow-inner">
+        <div class="relative shrink-0" style="width: 52px; height: 52px;">
+          <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] shadow-inner" style="width: 52px; height: 52px; min-width: 52px; min-height: 52px; object-fit: cover;">
           <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
         </div>
         <div class="min-w-0 flex-1">
