@@ -68,7 +68,7 @@
       </div>
 
       <!-- Mascot Welcome Banner -->
-      <div class="parchment-inner p-4 sm:p-5 bg-[#fbf5e6] mb-8 flex flex-col sm:flex-row items-center gap-4">
+      <div class="parchment-inner p-4 sm:p-5 bg-[#fbf5e6] mb-6 flex flex-col sm:flex-row items-center gap-4">
         <div class="w-16 h-16 rounded-full bg-amber-100 border-3 border-[#8b6543] flex items-center justify-center text-4xl shadow-md mascot-bob shrink-0">
           🐶
         </div>
@@ -77,6 +77,35 @@
             "ยินดีต้อนรับนักศึกษาทุกคนเข้าสู่ห้องเรียน! กรุณาเลือกรายวิชาที่เรียนด้านล่าง เพื่อเข้าดูกระดานคะแนนและอันดับของตัวเองนะ เมี้ยว~ 🐾"
           </p>
         </div>
+      </div>
+
+      <!-- QR CODE ACCESS SECTION -->
+      <div class="bg-[#fcf8f0] border-3 border-[#8c6746] rounded-2xl p-4 sm:p-5 mb-8 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+          <div class="relative group cursor-pointer shrink-0" id="btnThumbnailQr" title="แตะเพื่อขยาย QR Code">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 bg-white p-2 rounded-2xl border-2 border-[#8c6746] shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+              <img src="qrcode.png" alt="Classroom Quest QR Code" class="w-full h-full object-contain">
+            </div>
+            <span class="absolute -bottom-2 -right-1 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-700 shadow flex items-center gap-1">
+              <i class="fa-solid fa-expand"></i> ขยาย
+            </span>
+          </div>
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full font-game">
+              <span>📱</span> <span>สแกนเข้าห้องเรียน</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-[#4e3a27]">
+              สแกน QR Code เพื่อเปิดเว็บ / ติดตั้งแอป
+            </h3>
+            <p class="text-xs text-[#7d654f] leading-relaxed">
+              ให้นักศึกษาเปิดกล้องมือถือสแกนภาพนี้เพื่อเข้าสู่หน้าศูนย์รวมรายวิชา หรือกดติดตั้งแอปลงมือถือได้ทันที
+            </p>
+          </div>
+        </div>
+
+        <button id="btnOpenQrModal" class="game-btn btn-pill-gold text-xs px-4 py-2 font-bold whitespace-nowrap shadow shrink-0">
+          <i class="fa-solid fa-qrcode"></i> <span>ขยาย QR Code เต็มจอ</span>
+        </button>
       </div>
 
       <!-- COURSE CARDS (2 SUBJECTS) -->
@@ -184,6 +213,50 @@
     </div>
 
   </div>
+
+  <!-- QR CODE FULLSCREEN MODAL -->
+  <div id="qrCodeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="wood-board-subtle max-w-sm w-full p-6 text-center space-y-4 relative bg-[#fdf8ed] shadow-2xl animate-fade-in">
+      <button id="btnCloseQrModal" class="btn-close-game absolute top-3 right-3 text-sm" aria-label="ปิด">✕</button>
+
+      <div class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold px-3 py-1 rounded-full font-game">
+        <span>🌿</span> <span>Classroom Quest</span>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-lg text-[#4e3a27]">สแกน QR Code เข้าสู่ห้องเรียน</h3>
+        <p class="text-xs text-[#8f755e] mt-0.5">เปิดกล้องมือถือหรือแอป Line สแกนเพื่อเปิดเว็บ</p>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl border-3 border-[#8c6746] shadow-inner mx-auto inline-block">
+        <img src="qrcode.png" alt="Classroom Quest QR Code" class="w-64 h-64 object-contain mx-auto">
+      </div>
+
+      <p class="text-[11px] text-[#7d654f] font-mono break-all bg-[#f5e9d5] p-2 rounded-lg border border-[#ebd8c1]">
+        https://csbongga.github.io/S-High-level/
+      </p>
+
+      <button id="btnGotItQr" class="game-btn btn-pill-mint w-full py-2.5 text-xs font-bold shadow-md">
+        ปิดหน้าต่าง
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // QR Code Modal Handlers
+    (function initQrModal() {
+      const modal = document.getElementById('qrCodeModal');
+      const openModal = () => modal?.classList.remove('hidden');
+      const closeModal = () => modal?.classList.add('hidden');
+      document.getElementById('btnThumbnailQr')?.addEventListener('click', openModal);
+      document.getElementById('btnOpenQrModal')?.addEventListener('click', openModal);
+      document.getElementById('btnCloseQrModal')?.addEventListener('click', closeModal);
+      document.getElementById('btnGotItQr')?.addEventListener('click', closeModal);
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    })();
+  </script>
 
   <!-- PWA Helper -->
   <script src="pwa.js"></script>
