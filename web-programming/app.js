@@ -367,11 +367,14 @@ function renderTeacherView() {
   const container = document.getElementById("teacherCardGrid");
   if (!container) return;
   const query = (document.getElementById("teacherSearchInput")?.value || "").trim().toLowerCase();
-  const students = [...APP_STATE.students].filter(s =>
-    s.full_name.toLowerCase().includes(query) ||
-    s.nickname.toLowerCase().includes(query) ||
-    s.student_id.toLowerCase().includes(query)
-  );
+  // กรองตามคำค้นหา และเรียงลำดับตามรหัสนักศึกษา (Student ID) จากน้อยไปมากเสมอ
+  const students = [...APP_STATE.students]
+    .filter(s =>
+      s.full_name.toLowerCase().includes(query) ||
+      s.nickname.toLowerCase().includes(query) ||
+      s.student_id.toLowerCase().includes(query)
+    )
+    .sort((a, b) => String(a.student_id).localeCompare(String(b.student_id), undefined, { numeric: true }));
 
   if (students.length === 0) {
     container.innerHTML = `<div class="col-span-full text-center py-8 text-[#8f755e]"><p class="text-sm">ไม่พบนักศึกษา</p></div>`;
