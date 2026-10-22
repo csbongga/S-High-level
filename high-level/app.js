@@ -116,14 +116,14 @@ const sfx = new SoundFX();
 function getAvatarUrl(student) {
   if (student.photo_url && student.photo_url.trim().startsWith("http")) {
     const raw = student.photo_url.trim();
-    // แปลงลิงก์ Google Drive ให้อ่านเป็นรูปภาพตรงๆ ได้อัตโนมัติ
+    // แปลงลิงก์ Google Drive ให้เป็น Direct Image URL จาก Google CDN ทันที
     const match1 = raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
     if (match1 && match1[1]) {
-      return `https://drive.google.com/thumbnail?id=${match1[1]}&sz=w300`;
+      return `https://lh3.googleusercontent.com/d/${match1[1]}=w300`;
     }
     const match2 = raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (match2 && match2[1]) {
-      return `https://drive.google.com/thumbnail?id=${match2[1]}&sz=w300`;
+      return `https://lh3.googleusercontent.com/d/${match2[1]}=w300`;
     }
     return raw;
   }
@@ -314,7 +314,7 @@ function renderStudentView() {
         <div class="flex items-center gap-3 min-w-0">
           ${stampHtml}
           <div class="relative shrink-0">
-            <img src="${getAvatarUrl(s)}" alt="Avatar" class="w-11 h-11 rounded-full bg-[#faedd9] border-2 border-[#8b6543] object-cover shadow-xs">
+            <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="w-11 h-11 rounded-full bg-[#faedd9] border-2 border-[#8b6543] object-cover shadow-xs">
             <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
           </div>
           <div class="min-w-0">
@@ -398,7 +398,7 @@ function renderTeacherView() {
     <div class="bg-[#fcf8f0] border-3 border-[#c2a689] rounded-2xl p-3.5 shadow-sm flex flex-col justify-between gap-3 hover:border-[#8b6543] transition-all">
       <div class="flex items-center gap-3">
         <div class="relative shrink-0">
-          <img src="${getAvatarUrl(s)}" alt="Avatar" class="w-13 h-13 rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] object-cover shadow-inner">
+          <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="w-13 h-13 rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] object-cover shadow-inner">
           <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
         </div>
         <div class="min-w-0 flex-1">
