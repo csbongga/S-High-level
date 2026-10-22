@@ -113,8 +113,45 @@ class SoundFX {
 
 const sfx = new SoundFX();
 
-function getAvatarUrl(student) {
-  if (student.photo_url && student.photo_url.trim().startsWith("http")) {
+function createDefaultAvatar(student, theme = "wood") {
+  const clean = (student?.full_name || "").replace(/^(นาย|นางสาว|น\.ส\.|นาง|ด\.ช\.|ด\.ญ\.|อาจารย์|อ\.)\s*/, "").trim();
+  const leadingVowels = ["เ", "แ", "โ", "ใ", "ไ"];
+  let initial = student?.nickname && student.nickname.trim() ? student.nickname.trim() : "";
+  if (!initial) {
+    if (clean && leadingVowels.includes(clean[0])) initial = clean.slice(0, 2);
+    else if (clean) initial = clean.slice(0, 1);
+    else initial = student?.student_id ? String(student.student_id).slice(-2) : "CQ";
+  }
+  if (initial.length > 3) initial = initial.slice(0, 3);
+
+  const palettes = {
+    amber: { bg1: "#fef3c7", bg2: "#fde68a", ring: "#f59e0b", text: "#92400e" },
+    sky: { bg1: "#e0f2fe", bg2: "#bae6fd", ring: "#38bdf8", text: "#0369a1" },
+    emerald: { bg1: "#d1fae5", bg2: "#a7f3d0", ring: "#34d399", text: "#065f46" },
+    rose: { bg1: "#ffe4e6", bg2: "#fecdd3", ring: "#fb7185", text: "#9f1239" },
+    wood: { bg1: "#fdf6e2", bg2: "#f5e6cc", ring: "#c2a689", text: "#78350f" }
+  };
+  const p = palettes[theme] || palettes.wood;
+  const fontSize = initial.length >= 3 ? 30 : (initial.length === 2 ? 36 : 44);
+
+  const safeId = "g_" + theme + "_" + encodeURIComponent(initial).replace(/%/g, "_");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+    <defs>
+      <linearGradient id="${safeId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${p.bg1}"/>
+        <stop offset="100%" stop-color="${p.bg2}"/>
+      </linearGradient>
+    </defs>
+    <circle cx="48" cy="48" r="45" fill="url(#${safeId})" stroke="${p.ring}" stroke-width="3"/>
+    <circle cx="48" cy="48" r="40" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="48" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Mali', 'Prompt', sans-serif" font-weight="700" font-size="${fontSize}" fill="${p.text}" text-anchor="middle" dominant-baseline="central">${initial}</text>
+  </svg>`;
+
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+
+function getAvatarUrl(student, theme = "wood") {
+  if (student && student.photo_url && student.photo_url.trim().startsWith("http")) {
     const raw = student.photo_url.trim();
     // แปลงลิงก์ Google Drive ให้เป็น Direct Image URL จาก Google CDN ทันที
     const match1 = raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -127,8 +164,18 @@ function getAvatarUrl(student) {
     }
     return raw;
   }
-  const seed = encodeURIComponent(student.nickname || student.student_id);
-  return `https://api.dicebear.com/7.x/adventurer/svg?seed=${seed}&backgroundColor=fdf6e2`;
+  return createDefaultAvatar(student, theme);
+}
+
+function setHofAvatar(imgId, student, theme) {
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  const fallback = createDefaultAvatar(student, theme);
+  img.onerror = () => {
+    img.onerror = null;
+    img.src = fallback;
+  };
+  img.src = getAvatarUrl(student, theme);
 }
 
 function showToast(message, type = "success") {
@@ -317,7 +364,7 @@ function renderStudentView() {
         <div class="flex items-center gap-3 min-w-0">
           ${stampHtml}
           <div class="relative shrink-0" style="width: 44px; height: 44px;">
-            <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="rounded-full bg-[#faedd9] border-2 border-[#8b6543] shadow-xs" style="width: 44px; height: 44px; min-width: 44px; min-height: 44px; object-fit: cover;">
+            <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="handleAvatarImgError(this, '${s.student_id}')" alt="Avatar" class="rounded-full bg-[#faedd9] border-2 border-[#8b6543] shadow-xs" style="width: 44px; height: 44px; min-width: 44px; min-height: 44px; object-fit: cover;">
             <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
           </div>
           <div class="min-w-0">
@@ -351,31 +398,38 @@ function renderStudentView() {
   }).join("");
 }
 
+function handleAvatarImgError(img, studentId) {
+  if (!img) return;
+  img.onerror = null;
+  const s = APP_STATE.students.find(st => String(st.student_id) === String(studentId));
+  img.src = createDefaultAvatar(s, "wood");
+}
+
 function renderHallOfFame(students) {
   if (!students || students.length === 0) return;
   const topOverall = students[0];
   if (topOverall) {
     document.getElementById("hofOverallName").textContent = topOverall.nickname || topOverall.full_name;
     document.getElementById("hofOverallScore").textContent = topOverall.total_score;
-    document.getElementById("hofOverallImg").src = getAvatarUrl(topOverall);
+    setHofAvatar("hofOverallImg", topOverall, "amber");
   }
   const topAsk = [...students].sort((a, b) => b.ask_count - a.ask_count)[0];
   if (topAsk) {
     document.getElementById("hofAskName").textContent = topAsk.nickname || topAsk.full_name;
     document.getElementById("hofAskScore").textContent = topAsk.ask_count;
-    document.getElementById("hofAskImg").src = getAvatarUrl(topAsk);
+    setHofAvatar("hofAskImg", topAsk, "sky");
   }
   const topAnswer = [...students].sort((a, b) => b.answer_count - a.answer_count)[0];
   if (topAnswer) {
     document.getElementById("hofAnswerName").textContent = topAnswer.nickname || topAnswer.full_name;
     document.getElementById("hofAnswerScore").textContent = topAnswer.answer_count;
-    document.getElementById("hofAnswerImg").src = getAvatarUrl(topAnswer);
+    setHofAvatar("hofAnswerImg", topAnswer, "emerald");
   }
   const topHelp = [...students].sort((a, b) => b.help_count - a.help_count)[0];
   if (topHelp) {
     document.getElementById("hofHelpName").textContent = topHelp.nickname || topHelp.full_name;
     document.getElementById("hofHelpScore").textContent = topHelp.help_count;
-    document.getElementById("hofHelpImg").src = getAvatarUrl(topHelp);
+    setHofAvatar("hofHelpImg", topHelp, "rose");
   }
 }
 
@@ -401,7 +455,7 @@ function renderTeacherView() {
     <div class="bg-[#fcf8f0] border-3 border-[#c2a689] rounded-2xl p-3.5 shadow-sm flex flex-col justify-between gap-3 hover:border-[#8b6543] transition-all">
       <div class="flex items-center gap-3">
         <div class="relative shrink-0" style="width: 52px; height: 52px;">
-          <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent('${s.nickname || s.student_id}') + '&backgroundColor=fdf6e2';" alt="Avatar" class="rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] shadow-inner" style="width: 52px; height: 52px; min-width: 52px; min-height: 52px; object-fit: cover;">
+          <img src="${getAvatarUrl(s)}" referrerpolicy="no-referrer" onerror="handleAvatarImgError(this, '${s.student_id}')" alt="Avatar" class="rounded-full bg-[#fdf5e2] border-2 border-[#8b6543] shadow-inner" style="width: 52px; height: 52px; min-width: 52px; min-height: 52px; object-fit: cover;">
           <span class="absolute -bottom-1 -right-1 text-sm">${s.emoji || "🐾"}</span>
         </div>
         <div class="min-w-0 flex-1">
