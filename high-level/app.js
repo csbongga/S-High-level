@@ -194,14 +194,17 @@ function updateConnectionStatus(isLive, isError = false) {
   const badge = document.getElementById("connectionBadge");
   if (!badge) return;
   if (isError) {
-    badge.className = "text-[10px] sm:text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 whitespace-nowrap shrink-0";
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 whitespace-nowrap shadow-xs";
     badge.textContent = "เชื่อมต่อไม่ได้";
+    badge.title = "ไม่สามารถเชื่อมต่อ Google Sheets ได้";
   } else if (isLive) {
-    badge.className = "text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap shrink-0";
-    badge.textContent = `Google Sheets (${APP_STATE.sheetTabName})`;
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap shadow-xs";
+    badge.textContent = "Google Sheets";
+    badge.title = `เชื่อมต่อแผ่นงาน: ${APP_STATE.sheetTabName}`;
   } else {
-    badge.className = "text-[10px] sm:text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap shrink-0";
+    badge.className = "text-[10px] sm:text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap shadow-xs";
     badge.textContent = "Demo Mode";
+    badge.title = "โหมดจำลองตัวอย่าง";
   }
 }
 
