@@ -19,7 +19,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 
   <!-- PWA & Mobile Web App Meta -->
   <meta name="theme-color" content="#9bb38f">
@@ -31,30 +31,30 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Web-Prog">
 </head>
-<body class="min-h-screen py-4 px-2 sm:px-4 md:px-6 flex flex-col items-center">
+<body class="min-h-screen py-3 sm:py-4 px-2 sm:px-4 md:px-6 flex flex-col items-center overflow-x-hidden w-full">
 
   <!-- ============================================== -->
   <!-- TOP STATUS BAR (INSPIRED BY COZY RESTAURANT)  -->
   <!-- ============================================== -->
-  <header class="w-full max-w-5xl mb-4">
-    <div class="wood-board-subtle p-3 flex flex-wrap items-center justify-between gap-3">
+  <header class="w-full max-w-5xl mb-3 sm:mb-4">
+    <div class="wood-board-subtle p-2.5 sm:p-3 flex items-center justify-between gap-2 sm:gap-3">
       
       <!-- Left: Player Profile Chip -->
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2 min-w-0 flex-1">
         <div class="relative shrink-0">
-          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-200 border-2 border-[#3b7b59] flex items-center justify-center overflow-hidden shadow-inner">
-            <span class="text-2xl">🌐</span>
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-200 border-2 border-[#3b7b59] flex items-center justify-center overflow-hidden shadow-inner">
+            <span class="text-xl sm:text-2xl">🌐</span>
           </div>
-          <span class="absolute -bottom-1 -right-1 bg-[#76cba0] text-[#13492e] text-[10px] font-bold px-1.5 py-0.2 rounded-full border border-[#3b7b59]">Web</span>
+          <span class="absolute -bottom-1 -right-1 bg-[#76cba0] text-[#13492e] text-[9px] sm:text-[10px] font-bold px-1.5 py-0.2 rounded-full border border-[#3b7b59]">Web</span>
         </div>
-        <div>
-          <h1 id="courseTitleDisplay" class="font-bold text-sm sm:text-base text-[#4d3725] leading-tight">
+        <div class="min-w-0">
+          <h1 id="courseTitleDisplay" class="font-bold text-xs sm:text-base text-[#4d3725] leading-tight truncate">
             การออกแบบและเขียนโปรแกรมบนเว็บ
           </h1>
-          <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-[#7d654f] mt-0.5">
-            <span class="whitespace-nowrap">Web Design & Programming</span>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] sm:text-xs text-[#7d654f] mt-0.5">
+            <span class="whitespace-nowrap">Web Design</span>
             <span class="opacity-50">•</span>
-            <span id="connectionBadge" class="text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap shrink-0">Demo Mode</span>
+            <span id="connectionBadge" class="text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.2 rounded-full border border-emerald-300 whitespace-nowrap shrink-0">Demo Mode</span>
           </div>
         </div>
       </div>
@@ -84,18 +84,18 @@
       </div>
 
       <!-- Right: View Switcher & Settings -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <button id="btnPwaInstall" class="game-btn btn-pill-gold nav-header-btn px-2.5 sm:px-3 hidden" title="ติดตั้งแอปลงมือถือ">
-          <i class="fa-solid fa-mobile-screen-button"></i> <span>ติดตั้งแอป</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 ml-auto">
+        <button id="btnPwaInstall" class="game-btn btn-pill-gold nav-header-btn hidden" title="ติดตั้งแอปลงมือถือ">
+          <i class="fa-solid fa-mobile-screen-button text-sm"></i> <span class="hidden sm:inline">ติดตั้งแอป</span>
         </button>
-        <a href="../" class="game-btn btn-pill-wood nav-header-btn px-2.5 sm:px-3" title="กลับหน้าเลือกวิชา">
-          <i class="fa-solid fa-house"></i> <span>เลือกวิชา</span>
+        <a href="../" class="game-btn btn-pill-wood nav-header-btn" title="กลับหน้าเลือกวิชา">
+          <i class="fa-solid fa-house text-sm"></i> <span class="hidden sm:inline">เลือกวิชา</span>
         </a>
-        <button id="btnViewStudent" class="game-btn btn-pill-mint nav-header-btn px-2.5 sm:px-3">
-          <i class="fa-solid fa-trophy"></i> <span>กระดาน</span>
+        <button id="btnViewStudent" class="game-btn btn-pill-mint nav-header-btn" title="กระดานคะแนน">
+          <i class="fa-solid fa-trophy text-sm"></i> <span class="hidden sm:inline">กระดาน</span>
         </button>
-        <button id="btnViewTeacher" class="game-btn btn-pill-coral nav-header-btn px-2.5 sm:px-3">
-          <i class="fa-solid fa-chalkboard-user"></i> <span>โต๊ะอาจารย์</span>
+        <button id="btnViewTeacher" class="game-btn btn-pill-coral nav-header-btn" title="โต๊ะอาจารย์">
+          <i class="fa-solid fa-chalkboard-user text-sm"></i> <span class="hidden sm:inline">โต๊ะอาจารย์</span>
         </button>
         <button id="btnToggleSound" class="game-btn btn-pill-wood nav-header-btn-icon rounded-full" title="เปิด/ปิดเสียง">
           <i class="fa-solid fa-volume-high text-xs" id="soundIcon"></i>
