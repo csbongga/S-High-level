@@ -1,0 +1,384 @@
+/* =========================================================
+   Cozy Game UI Theme (Inspired by Animal Restaurant & Cottagecore RPG)
+   ========================================================= */
+
+:root {
+  --bg-sage: #9bb38f;
+  --bg-sage-dark: #819b75;
+  --wood-dark: #583d28;
+  --wood-mid: #886544;
+  --wood-light: #c7a47b;
+  --wood-border: #4d3320;
+  --parchment: #fdf8ed;
+  --parchment-alt: #f6ecdb;
+  --parchment-border: #e3d2b6;
+  --text-brown: #543f2c;
+  --text-light-brown: #8a735c;
+  
+  /* 3D Game Buttons */
+  --btn-mint: #76cba0;
+  --btn-mint-dark: #4e9d74;
+  --btn-coral: #f38f88;
+  --btn-coral-dark: #c8655e;
+  --btn-sky: #70b8ee;
+  --btn-sky-dark: #478fc5;
+  --btn-wood: #a67f57;
+  --btn-wood-dark: #775535;
+  --btn-yellow: #f8c74a;
+  --btn-yellow-dark: #c9981e;
+}
+
+body {
+  background-color: var(--bg-sage);
+  background-image: 
+    radial-gradient(#b2c9a6 15%, transparent 16%),
+    radial-gradient(#b2c9a6 15%, transparent 16%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  color: var(--text-brown);
+  font-family: 'Mali', 'Itim', cursive, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.font-game {
+  font-family: 'Fredoka', 'Mali', cursive, sans-serif;
+}
+
+/* =========================================================
+   WOODEN FRAMES & PANELS
+   ========================================================= */
+.wood-board {
+  background: var(--parchment);
+  border: 8px solid var(--wood-mid);
+  border-radius: 28px;
+  box-shadow: 
+    0 10px 0 var(--wood-dark),
+    0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 3px var(--wood-light),
+    inset 0 4px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.wood-board-subtle {
+  background: var(--parchment);
+  border: 5px solid var(--wood-mid);
+  border-radius: 20px;
+  box-shadow: 
+    0 5px 0 var(--wood-dark),
+    0 8px 12px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 2px var(--wood-light);
+  position: relative;
+}
+
+.parchment-inner {
+  background: var(--parchment);
+  border: 2px dashed var(--parchment-border);
+  border-radius: 18px;
+}
+
+/* Wooden Plank Title Sign */
+.wood-plank-title {
+  background: linear-gradient(180deg, #a6815c 0%, #835f3d 100%);
+  border: 4px solid #573c26;
+  border-radius: 20px;
+  box-shadow: 
+    0 4px 0 #3d2817,
+    0 8px 12px rgba(0, 0, 0, 0.25),
+    inset 0 2px 0 rgba(255, 255, 255, 0.25);
+  color: #fff9ea;
+  text-shadow: 1px 2px 0 #3d2817;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Red / Coral Close Button with 'X' */
+.btn-close-game {
+  background: #f1776e;
+  border: 3px solid #632d29;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #632d29;
+  color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.btn-close-game:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #632d29;
+}
+
+/* =========================================================
+   3D GAME PILL BUTTONS (JUST LIKE THE IMAGE!)
+   ========================================================= */
+.game-btn {
+  font-family: 'Fredoka', 'Mali', cursive, sans-serif;
+  font-weight: 700;
+  border-radius: 9999px;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.08s ease;
+  user-select: none;
+  position: relative;
+}
+
+.game-btn:active {
+  transform: translateY(3px) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Mint Green Pill (Answers / Primary) */
+.btn-pill-mint {
+  background: linear-gradient(180deg, #84d8ad 0%, #6ec296 100%);
+  border-color: #3b7b59;
+  color: #174c30;
+  box-shadow: 0 4px 0 #3b7b59, 0 6px 10px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn-pill-mint:hover {
+  background: linear-gradient(180deg, #91e2b8 0%, #76caa0 100%);
+}
+
+/* Coral Pink Pill (Questions) */
+.btn-pill-coral {
+  background: linear-gradient(180deg, #f89e97 0%, #ea817a 100%);
+  border-color: #9c4842;
+  color: #5c1b17;
+  box-shadow: 0 4px 0 #9c4842, 0 6px 10px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn-pill-coral:hover {
+  background: linear-gradient(180deg, #fba9a3 0%, #f08982 100%);
+}
+
+/* Sky Blue Pill (Help / Assist) */
+.btn-pill-sky {
+  background: linear-gradient(180deg, #81c4f5 0%, #63aee7 100%);
+  border-color: #346c98;
+  color: #143e5e;
+  box-shadow: 0 4px 0 #346c98, 0 6px 10px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn-pill-sky:hover {
+  background: linear-gradient(180deg, #92cffc 0%, #6db7ee 100%);
+}
+
+/* Wood Stump Pill (Settings / View Design) */
+.btn-pill-wood {
+  background: linear-gradient(180deg, #b9936c 0%, #9e7853 100%);
+  border-color: #553c25;
+  color: #fff9ed;
+  box-shadow: 0 4px 0 #553c25, 0 6px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 1px #3a2717;
+}
+.btn-pill-wood:hover {
+  background: linear-gradient(180deg, #c5a17b 0%, #a8815c 100%);
+}
+
+/* Golden Star Pill */
+.btn-pill-gold {
+  background: linear-gradient(180deg, #fbd868 0%, #f1be3a 100%);
+  border-color: #9e7616;
+  color: #4f3905;
+  box-shadow: 0 4px 0 #9e7616, 0 6px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   RESOURCE CAPSULES (LIKE HEADER COINS/HEARTS/ENERGY)
+   ========================================================= */
+.resource-badge {
+  background: #fbf3e2;
+  border: 2px solid #b59876;
+  border-radius: 9999px;
+  padding: 3px 12px 3px 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-brown);
+}
+
+.resource-icon-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   PROGRESS BAR: "LUCKY VOTE 20/20" COZY STRIPED STYLE
+   ========================================================= */
+.lucky-progress-wrap {
+  background: #edd8be;
+  border: 3px solid #8e6c4a;
+  border-radius: 9999px;
+  padding: 3px;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.lucky-progress-bar {
+  background: repeating-linear-gradient(
+    -45deg,
+    #78cc9e,
+    #78cc9e 10px,
+    #69ba8f 10px,
+    #69ba8f 20px
+  );
+  border-radius: 9999px;
+  height: 16px;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================================
+   COZY SPEECH BUBBLE & MASCOT
+   ========================================================= */
+.speech-bubble {
+  background: #ffffff;
+  border: 3px solid #7c6248;
+  border-radius: 20px;
+  padding: 12px 18px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  color: #55402c;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 28px;
+  border-width: 12px 10px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 26px;
+  border-width: 15px 12px 0;
+  border-style: solid;
+  border-color: #7c6248 transparent;
+  display: block;
+  width: 0;
+}
+
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1.5deg); }
+}
+
+.mascot-bob {
+  animation: mascotBob 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   VINES & LEAVES DECORATION AROUND BOARD
+   ========================================================= */
+.vine-deco-left {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.vine-deco-right {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* =========================================================
+   RANKING STAMPS & BADGES
+   ========================================================= */
+.rank-stamp-1 {
+  background: #f7ce46;
+  border: 2px solid #a37913;
+  color: #594004;
+  border-radius: 9999px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  box-shadow: 0 2px 0 #a37913;
+}
+
+.rank-stamp-2 {
+  background: #e2e8f0;
+  border: 2px solid #8e9bb0;
+  color: #3b4554;
+  border-radius: 9999px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  box-shadow: 0 2px 0 #8e9bb0;
+}
+
+.rank-stamp-3 {
+  background: #e9b384;
+  border: 2px solid #a06e40;
+  color: #5a3818;
+  border-radius: 9999px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  box-shadow: 0 2px 0 #a06e40;
+}
+
+.rank-stamp-normal {
+  background: #ede3d2;
+  border: 2px solid #b8a691;
+  color: #635342;
+  border-radius: 9999px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}

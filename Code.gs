@@ -1,16 +1,32 @@
 // ==========================================
-// Classroom Participation Gamification API
-// คัดลอกโค้ดนี้ไปวางใน Extensions -> Apps Script
+// Classroom Participation Gamification API (Multi-Course Edition)
+// รองรับหลายรายวิชาในไฟล์ Google Sheets เดียวกัน (แยกตามแท็บแผ่นงาน)
 // ==========================================
-const TEACHER_PIN = "3535"; // รหัส PIN อาจารย์ (สามารถเปลี่ยนได้)
+const TEACHER_PIN = "1234"; // รหัส PIN อาจารย์ (สามารถเปลี่ยนได้)
 const TARGET_SCORE = 20;   // คะแนนเต็มเป้าหมาย
 
+// ฟังก์ชันหาแผ่นงาน (Sheet) ตามชื่อวิชาที่ส่งมา
+function getTargetSheet(sheetName) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (sheetName) {
+    const sheet = ss.getSheetByName(sheetName);
+    if (sheet) return sheet;
+  }
+  return ss.getSheets()[0]; // ถ้าไม่ระบุ หรือหาไม่เจอ ให้ใช้แผ่นแรก
+}
+
 function doGet(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const sheetName = (e && e.parameter && e.parameter.sheet) ? e.parameter.sheet.trim() : "";
+  const sheet = getTargetSheet(sheetName);
   const data = sheet.getDataRange().getValues();
   
   if (data.length <= 1) {
-    return createJsonResponse({ status: "success", students: [], target: TARGET_SCORE });
+    return createJsonResponse({ 
+      status: "success", 
+      sheet_name: sheet.getName(),
+      students: [], 
+      target: TARGET_SCORE 
+    });
   }
   
   const students = [];
@@ -39,6 +55,7 @@ function doGet(e) {
   
   return createJsonResponse({
     status: "success",
+    sheet_name: sheet.getName(),
     target: TARGET_SCORE,
     students: students
   });
@@ -47,14 +64,14 @@ function doGet(e) {
 function doPost(e) {
   try {
     const body = JSON.parse(e.postData.contents);
-    const { pin, student_id, action, custom_amount } = body;
+    const { pin, student_id, action, custom_amount, sheet: sheetName } = body;
     
     // ตรวจสอบ PIN อาจารย์
     if (pin !== TEACHER_PIN) {
       return createJsonResponse({ status: "error", message: "รหัส PIN ไม่ถูกต้อง" });
     }
     
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const sheet = getTargetSheet(sheetName);
     const data = sheet.getDataRange().getValues();
     let targetRow = -1;
     
@@ -66,7 +83,10 @@ function doPost(e) {
     }
     
     if (targetRow === -1) {
-      return createJsonResponse({ status: "error", message: "ไม่พบรหัสนักศึกษานี้ในตาราง" });
+      return createJsonResponse({ 
+        status: "error", 
+        message: `ไม่พบรหัสนักศึกษานี้ในแผ่นงาน "${sheet.getName()}"` 
+      });
     }
     
     // คอลัมน์: E(5)=ถาม, F(6)=ตอบ, G(7)=ช่วยงาน
@@ -88,6 +108,7 @@ function doPost(e) {
       return createJsonResponse({
         status: "success",
         message: "บันทึกคะแนนเรียบร้อย",
+        sheet_name: sheet.getName(),
         student_id: student_id,
         new_val: newVal
       });
