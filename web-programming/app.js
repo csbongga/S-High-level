@@ -24,12 +24,15 @@ const MASCOT_MESSAGES = [
   "\"ใครทำหน้าเว็บสวยและเก็บครบ 20 แต้มก่อนเพื่อน รับรางวัลประจำคลาสไปเลย! 🏆\""
 ];
 
+const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbx1qN_EdUDAYmCV2zgIgS0vO8JR3C8VCoJT2UY4xJDyZ7fULje1Evbqpp30qhAfyPa-_A/exec";
+const DEFAULT_TEACHER_PIN = "3535";
+
 const APP_STATE = {
   courseTitle: localStorage.getItem("cq_web_course_title") || "การออกแบบและเขียนโปรแกรมบนเว็บ",
   sheetTabName: "web_programming",
-  gasUrl: localStorage.getItem("cq_web_gas_url") || "",
-  teacherPin: localStorage.getItem("cq_teacher_pin") || "1234",
-  refreshInterval: Number(localStorage.getItem("cq_refresh_interval")) || 5,
+  gasUrl: localStorage.getItem("cq_web_gas_url") || DEFAULT_GAS_URL,
+  teacherPin: localStorage.getItem("cq_teacher_pin") || DEFAULT_TEACHER_PIN,
+  refreshInterval: Number(localStorage.getItem("cq_refresh_interval")) || 3,
   soundEnabled: localStorage.getItem("cq_sound_enabled") !== "false",
   targetScore: 20,
   students: [],

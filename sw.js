@@ -3,7 +3,7 @@
  * Enables PWA installation, offline shell caching, and instant launch.
  */
 
-const CACHE_NAME = "classquest-pwa-v4";
+const CACHE_NAME = "classquest-pwa-v5";
 
 const SHELL_ASSETS = [
   "./",

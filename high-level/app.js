@@ -27,12 +27,15 @@ const MASCOT_MESSAGES = [
   "\"เก็บให้ครบ 20 แต้มก่อนสอบปลายภาค สู้ๆ ทุกคน! 💖\""
 ];
 
+const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbx2DCzDfQckZSvYEEGhKOonr4F541AVSkLHdePtP4nEvE9zcIZ-dsKTPZjQuRrxp8Gs/exec";
+const DEFAULT_TEACHER_PIN = "3535";
+
 const APP_STATE = {
   courseTitle: localStorage.getItem("cq_hl_course_title") || "การเขียนโปรแกรมภาษาระดับสูง",
   sheetTabName: "high_level",
-  gasUrl: localStorage.getItem("cq_hl_gas_url") || "",
-  teacherPin: localStorage.getItem("cq_teacher_pin") || "1234",
-  refreshInterval: Number(localStorage.getItem("cq_refresh_interval")) || 5,
+  gasUrl: localStorage.getItem("cq_hl_gas_url") || DEFAULT_GAS_URL,
+  teacherPin: localStorage.getItem("cq_teacher_pin") || DEFAULT_TEACHER_PIN,
+  refreshInterval: Number(localStorage.getItem("cq_refresh_interval")) || 3,
   soundEnabled: localStorage.getItem("cq_sound_enabled") !== "false",
   targetScore: 20,
   students: [],

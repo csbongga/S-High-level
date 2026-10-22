@@ -35,11 +35,14 @@ const MASCOT_MESSAGES = [
 // ==========================================
 // 2. STATE & CONFIGURATION
 // ==========================================
+const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbx2DCzDfQckZSvYEEGhKOonr4F541AVSkLHdePtP4nEvE9zcIZ-dsKTPZjQuRrxp8Gs/exec";
+const DEFAULT_TEACHER_PIN = "3535";
+
 const APP_STATE = {
   courseTitle: localStorage.getItem("cq2_course_title") || "การเขียนโปรแกรมภาษาระดับสูง (High-level Programming)",
-  gasUrl: localStorage.getItem("cq2_gas_url") || "",
-  teacherPin: localStorage.getItem("cq2_teacher_pin") || "1234",
-  refreshInterval: Number(localStorage.getItem("cq2_refresh_interval")) || 5,
+  gasUrl: localStorage.getItem("cq2_gas_url") || DEFAULT_GAS_URL,
+  teacherPin: localStorage.getItem("cq2_teacher_pin") || DEFAULT_TEACHER_PIN,
+  refreshInterval: Number(localStorage.getItem("cq2_refresh_interval")) || 3,
   soundEnabled: localStorage.getItem("cq2_sound_enabled") !== "false",
   targetScore: 20,
   students: [],
