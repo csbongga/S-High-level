@@ -27,7 +27,7 @@ const MASCOT_MESSAGES = [
 const APP_STATE = {
   courseTitle: localStorage.getItem("cq_web_course_title") || "การออกแบบและเขียนโปรแกรมบนเว็บ",
   sheetTabName: "web_programming",
-  gasUrl: localStorage.getItem("cq_shared_gas_url") || localStorage.getItem("cq_web_gas_url") || "",
+  gasUrl: localStorage.getItem("cq_web_gas_url") || "",
   teacherPin: localStorage.getItem("cq_teacher_pin") || "1234",
   refreshInterval: Number(localStorage.getItem("cq_refresh_interval")) || 5,
   soundEnabled: localStorage.getItem("cq_sound_enabled") !== "false",
@@ -552,7 +552,8 @@ function setupEventListeners() {
     APP_STATE.refreshInterval = newInterval;
 
     localStorage.setItem("cq_web_course_title", newTitle);
-    localStorage.setItem("cq_shared_gas_url", newGas);
+    localStorage.setItem("cq_web_gas_url", newGas);
+    localStorage.removeItem("cq_shared_gas_url"); // ลบคีย์แชร์เก่าออก เพื่อไม่ให้ชนกับอีกวิชา
     localStorage.setItem("cq_teacher_pin", newPin);
     localStorage.setItem("cq_refresh_interval", newInterval);
 
